@@ -7,22 +7,15 @@ public class PlayerMovement : MonoBehaviour
 {
     Vector3 spawnPoint;
     Vector3 startScale;
-    PlayerControls pc;
     Rigidbody2D rb;
     [SerializeField] float jumpingDuration, speed, knockbackDuration, knockbackForce;
     bool isJumping, isStunned;
     IsGrounded gr;
     Color debugStartColor;
     Coroutine cr;
-    // Start is called before the first frame update
 
-    private void Awake()
-    {
-        pc = new PlayerControls();
-        pc.Enable();
-        pc.BasicControls.Jump.performed += _ => Jump();
+    Vector2 moveVector;
 
-    }
     void Start()
     {
         cr = null;
@@ -30,13 +23,13 @@ public class PlayerMovement : MonoBehaviour
         startScale = transform.localScale;
         rb = GetComponent<Rigidbody2D>();
         gr = GetComponent<IsGrounded>();
-        debugStartColor = GetComponent<SpriteRenderer>().color;
+        debugStartColor = Color.blue;
     }
 
     // Update is called once per frame
     void LateUpdate()
     {
-        Debug.Log(gr.grounded);
+        //Debug.Log(gr.grounded);
         if (!gr.grounded && !isJumping)
         {
             isStunned = true;
@@ -48,7 +41,12 @@ public class PlayerMovement : MonoBehaviour
     private void FixedUpdate()
     {
         if(!isStunned && !isJumping)
-            rb.velocity = pc.BasicControls.Move.ReadValue<Vector2>() * speed;
+            rb.velocity = moveVector * speed;
+    }
+
+    public void OnMove(InputAction.CallbackContext context)
+    {
+        moveVector = context.ReadValue<Vector2>();
     }
 
     void Fall()
@@ -57,7 +55,7 @@ public class PlayerMovement : MonoBehaviour
             cr = StartCoroutine(Die());
     }
 
-    void Jump()
+    public void Jump()
     {
         if (isJumping == false)
         {
@@ -99,7 +97,7 @@ public class PlayerMovement : MonoBehaviour
         if(collision.CompareTag("Player"))
         {
             isStunned = true;
-            rb.velocity = (collision.transform.position - transform.position).normalized * knockbackForce;
+            rb.velocity = -(collision.transform.position - transform.position).normalized * knockbackForce;
             StartCoroutine(PlayerCollision());
         }
     }
