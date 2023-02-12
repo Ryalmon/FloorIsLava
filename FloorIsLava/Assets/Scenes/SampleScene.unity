@@ -495,7 +495,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 1000868090985821033, guid: f777e8c6f6230ea43b1b488a6b560d9b, type: 3}
       propertyPath: m_DefaultControlScheme
-      value: Keyboard
+      value: Gamepad
       objectReference: {fileID: 0}
     - target: {fileID: 2397583707728736193, guid: f777e8c6f6230ea43b1b488a6b560d9b, type: 3}
       propertyPath: m_Name
