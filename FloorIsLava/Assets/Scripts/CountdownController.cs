@@ -31,8 +31,9 @@ public class CountdownController : MonoBehaviour
         SceneManager.LoadScene("Loss Screen");
 
     }
-    // Start is called before the first frame update
-    void Start()
+    
+
+    public void StartTimer()
     {
         StartCoroutine(CountdownToStart());
     }
