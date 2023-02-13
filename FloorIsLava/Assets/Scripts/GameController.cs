@@ -1,6 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
+
 
 public class GameController : MonoBehaviour
 {
@@ -9,18 +11,26 @@ public class GameController : MonoBehaviour
     void Update(){
         if(buttonsPressed > 4){
             Debug.Log("all buttons pressed.");
-            EndGame();
+            WinGame();
         }
     }
     void BeginGame(){
         buttonsPressed = 0;
 
     }
-    void EndGame(){
-
+    void WinGame(){
+        SceneManager.LoadScene("Win Screen");
     }
 
     public void ButtonRestart(){
-        Debug.Log("Replace this with the main menu or first level");
+        SceneManager.LoadScene("SampleScene");
+    }
+
+    public void QuitGame(){
+        Application.Quit();
+    }
+
+    public void LoadTitleScreen(){
+        SceneManager.LoadScene("Title Screen");
     }
 }
