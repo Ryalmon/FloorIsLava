@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class CountdownController : MonoBehaviour
 {
@@ -18,8 +19,6 @@ public class CountdownController : MonoBehaviour
         }
 
         //this is where the timer reaches 0 and starts blinking
-        Debug.Log("Timer ended >> add loss condition");
-
 
         for(int i = 0; i < 5; i++)
         {
@@ -29,6 +28,7 @@ public class CountdownController : MonoBehaviour
             yield return new WaitForSeconds(.2f);
 
         }
+        SceneManager.LoadScene("Loss Screen");
 
     }
     // Start is called before the first frame update
