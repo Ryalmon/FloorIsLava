@@ -9,7 +9,7 @@ public class ButtonBehavior : MonoBehaviour
     private void Start()
     {
         gm = FindObjectOfType<GameManager>();
-        gm.AddB(this.gameObject);
+        //gm.AddB(this.gameObject);
        
     }
     public bool active = false;
@@ -20,7 +20,7 @@ public class ButtonBehavior : MonoBehaviour
             if(!active){
                 active = true;
                 GetComponent<SpriteRenderer>().color = Color.red;
-                gm.AddB(this.gameObject);
+                gm.RemoveB(this.gameObject);
                 //gc.buttonsPressed++; 
                 //Debug.Log("buttons pressed: " + gc.buttonsPressed);
             }

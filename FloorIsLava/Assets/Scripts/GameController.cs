@@ -13,7 +13,12 @@ public class GameController : MonoBehaviour
     }
 
     public void ButtonRestart(){
-        SceneManager.LoadScene("SampleScene");
+        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+    }
+
+    public void ButtonStart(string name)
+    {
+        SceneManager.LoadScene(name);
     }
 
     public void QuitGame(){

@@ -12,7 +12,7 @@ public class GameManager : MonoBehaviour
 
     private void Awake()
     {
-        buttons = new List<GameObject>();
+        buttons = new List<GameObject>(GameObject.FindGameObjectsWithTag("Button"));
         players = new List<GameObject>();
     }
     void Start()
@@ -40,7 +40,7 @@ public class GameManager : MonoBehaviour
 
     public void RemoveP(GameObject temp)
     {
-        buttons.Remove(temp);
+        players.Remove(temp);
         changed = true;
     }
     void Update()
@@ -48,10 +48,11 @@ public class GameManager : MonoBehaviour
         if (changed) 
         {
             changed = false;
-            Debug.Log(buttons.Count);
+            Debug.Log(door.open);
+            Debug.Log(players.Count);
             if (buttons.Count <= 0)
             {
-             door.Open();
+              door.Open();
             }
 
             if (door.open && players.Count <= 0)

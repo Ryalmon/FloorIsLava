@@ -8,7 +8,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Title Screen.unity
     guid: 8597c8dbf51da024aa0d601c318c10a6
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/SampleScene.unity
     guid: 2cda990e2423bbf4892e6590ba056729
   - enabled: 1
@@ -17,4 +17,10 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Loss Screen.unity
     guid: b03da42bcf4a8c6468e3966b9cfa8ece
+  - enabled: 1
+    path: Assets/Scenes/InputTesting.unity
+    guid: fd0ca097dcfe3484985c023ed7289dab
+  - enabled: 1
+    path: Assets/Scenes/LevelScene.unity
+    guid: 2c1216ee949913e4dad2df1b8cafe095
   m_configObjects: {}

@@ -14,13 +14,14 @@ public class DoorBehavior : MonoBehaviour
         sr = GetComponent<SpriteRenderer>();
         col = GetComponent<Collider2D>();
         col.isTrigger = false;
-        open = true;
+        open = false;
     }
     // Start is called before the first frame update
     public void Open()
     { 
         sr.color = Color.green;
         col.isTrigger = true;
+        open = true;
     }
 
 
