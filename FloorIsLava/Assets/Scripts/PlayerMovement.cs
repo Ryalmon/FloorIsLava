@@ -18,10 +18,13 @@ public class PlayerMovement : MonoBehaviour
         new Color(136f / 255f, 204f / 255f, 238f / 255f , 1f) };
     Coroutine cr;
 
+    GameManager gm;
+
     Vector2 moveVector;
 
     void Start()
     {
+        gm = FindObjectOfType<GameManager>();
         cr = null;
         spawnPoint = transform.position;
         startScale = transform.localScale;
@@ -31,7 +34,9 @@ public class PlayerMovement : MonoBehaviour
         GameObject[] playerArray = GameObject.FindGameObjectsWithTag("Player");
         startColor = playerColors[playerArray.Length - 1];
         GetComponent<SpriteRenderer>().color = startColor;
+        gm.AddP(this.gameObject);
     }
+
 
     // Update is called once per frame
     void LateUpdate()
@@ -99,13 +104,23 @@ public class PlayerMovement : MonoBehaviour
         cr = null;
     }
 
-    private void OnTriggerEnter2D(Collider2D collision)
+    private void OnCollisionEnter2D(Collision2D collision)
     {
-        if(collision.CompareTag("Player"))
+        if (collision.gameObject.CompareTag("Player"))
         {
             isStunned = true;
             rb.velocity = -(collision.transform.position - transform.position).normalized * knockbackForce;
             StartCoroutine(PlayerCollision());
+        }
+    }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if(collision.CompareTag("Door"))
+        {
+            gm.RemoveP(this.gameObject);
+            GetComponent<SpriteRenderer>().color = new Color(0, 0, 0, 0);
+            isStunned = true;
         }
     }
 
