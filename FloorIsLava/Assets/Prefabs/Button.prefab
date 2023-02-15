@@ -99,6 +99,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   active: 0
+  pressedButton: {fileID: 21300000, guid: 279b9c9ee83be64429e350095143ef72, type: 3}
 --- !u!61 &736033735225532843
 BoxCollider2D:
   m_ObjectHideFlags: 0
