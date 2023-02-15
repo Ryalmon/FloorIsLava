@@ -7,6 +7,7 @@ public class DoorBehavior : MonoBehaviour
 
     public bool open = false;
     SpriteRenderer sr;
+    public Sprite openDoor;
     Collider2D col;
 
     private void Start()
@@ -19,7 +20,7 @@ public class DoorBehavior : MonoBehaviour
     // Start is called before the first frame update
     public void Open()
     { 
-        sr.color = Color.green;
+        sr.sprite = openDoor;
         col.isTrigger = true;
         open = true;
     }
