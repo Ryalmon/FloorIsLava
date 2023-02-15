@@ -67,9 +67,9 @@ public class PlayerMovement : MonoBehaviour
             cr = StartCoroutine(Die());
     }
 
-    public void Jump()
+    public void Jump(InputAction.CallbackContext context)
     {
-        if (isJumping == false)
+        if (isJumping == false && context.performed)
         {
             isJumping = true;
             StartCoroutine(Jumping());
