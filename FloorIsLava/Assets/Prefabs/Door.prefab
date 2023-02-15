@@ -125,3 +125,4 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   open: 0
+  openDoor: {fileID: 21300000, guid: 3cfdd990f5d0c904f8cbe7d133a446ec, type: 3}
