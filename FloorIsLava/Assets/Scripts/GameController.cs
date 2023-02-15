@@ -6,24 +6,19 @@ using UnityEngine.SceneManagement;
 
 public class GameController : MonoBehaviour
 {
-    public int buttonsPressed = 0;
+    //public int buttonsPressed = 0;
 
-    void Update(){
-        if(buttonsPressed > 4){
-            Debug.Log("all buttons pressed.");
-            WinGame();
-        }
-    }
-    void BeginGame(){
-        buttonsPressed = 0;
-
-    }
     void WinGame(){
         SceneManager.LoadScene("Win Screen");
     }
 
     public void ButtonRestart(){
-        SceneManager.LoadScene("SampleScene");
+        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+    }
+
+    public void ButtonStart(string name)
+    {
+        SceneManager.LoadScene(name);
     }
 
     public void QuitGame(){

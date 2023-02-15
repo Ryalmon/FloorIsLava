@@ -8,6 +8,7 @@ public class CountdownController : MonoBehaviour
 {
     public int countdownTime;
     public Text countdownDisplay;
+    bool isRunning = false;
 
     IEnumerator CountdownToStart()
     {
@@ -31,10 +32,15 @@ public class CountdownController : MonoBehaviour
         SceneManager.LoadScene("Loss Screen");
 
     }
-    // Start is called before the first frame update
-    void Start()
+    
+
+    public void StartTimer()
     {
-        StartCoroutine(CountdownToStart());
+        if (!isRunning)
+        {
+            isRunning = true;
+            StartCoroutine(CountdownToStart());
+        }
     }
 
     // Update is called once per frame
