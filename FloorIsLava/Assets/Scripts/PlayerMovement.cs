@@ -17,7 +17,6 @@ public class PlayerMovement : MonoBehaviour
         new Color(170f / 255f, 68f / 255f, 153f / 255f , 1f),
         new Color(136f / 255f, 204f / 255f, 238f / 255f , 1f) };
     Coroutine cr;
-    Coroutine cr2;
 
     GameManager gm;
 
@@ -27,7 +26,6 @@ public class PlayerMovement : MonoBehaviour
     {
         gm = FindObjectOfType<GameManager>();
         cr = null;
-        cr2 = null;
         spawnPoint = transform.position;
         startScale = transform.localScale;
         rb = GetComponent<Rigidbody2D>();
@@ -46,10 +44,9 @@ public class PlayerMovement : MonoBehaviour
         //Debug.Log(gr.grounded);
         if (!gr.grounded && !isJumping)
         {
-            
-            if(cr2 == null)
-                StartCoroutine(FallBuffer());
-            //Fall();
+            isStunned = true;
+            rb.velocity = Vector3.zero;
+            Fall();
         }
     }
 
@@ -64,28 +61,15 @@ public class PlayerMovement : MonoBehaviour
         moveVector = context.ReadValue<Vector2>();
     }
 
-    IEnumerator FallBuffer()
-    {
-        yield return new WaitForSeconds(0.1f);
-        if(!gr.grounded && !isJumping)
-        {
-            isStunned = true;
-            rb.velocity = Vector3.zero;
-            Fall();
-        }
-        cr2 = null;
-
-    }
-
     void Fall()
     {
         if (cr == null)
             cr = StartCoroutine(Die());
     }
 
-    public void Jump()
+    public void Jump(InputAction.CallbackContext context)
     {
-        if (isJumping == false && gr.grounded)
+        if (isJumping == false && context.performed)
         {
             isJumping = true;
             StartCoroutine(Jumping());
@@ -112,12 +96,11 @@ public class PlayerMovement : MonoBehaviour
     IEnumerator Respawn()
     {
         yield return new WaitForSeconds(3);
-        
-        transform.position = gr.last;
-        transform.localScale = startScale;
         gr.grounded = true;
         isStunned = false;
         isJumping = false;
+        transform.position = spawnPoint;
+        transform.localScale = startScale;
         cr = null;
     }
 
