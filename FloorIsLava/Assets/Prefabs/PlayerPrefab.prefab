@@ -164,6 +164,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   grounded: 1
+  last: {x: 0, y: 0}
 --- !u!114 &316464356
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -178,9 +179,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   jumpingDuration: 0.5
   speed: 6
-  knockbackDuration: 0.3
-  knockbackForce: 2
-  sr: {fileID: 3029035979257233355}
+  knockbackDuration: 0.12
+  knockbackForce: 15
+  spawnPositions:
+  - {x: -0.75, y: 0.5, z: 0}
+  - {x: 0.75, y: 0.5, z: 0}
+  - {x: 0, y: -0.5, z: 0}
 --- !u!50 &2505988538675648251
 Rigidbody2D:
   serializedVersion: 4
