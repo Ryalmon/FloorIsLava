@@ -16,6 +16,9 @@ public class PlayerMovement : MonoBehaviour
         new Color(17f / 255f, 119f / 255f, 51f / 255f, 1f),
         new Color(170f / 255f, 68f / 255f, 153f / 255f , 1f),
         new Color(136f / 255f, 204f / 255f, 238f / 255f , 1f) };
+    [SerializeField] Vector3[] spawnPositions = new Vector3[] { new Vector3(-0.75f, 0.5f, 0f),
+        new Vector3(0.75f, 0.5f, 0f),
+        new Vector3(0f, -0.5f, 0f) };
     Coroutine cr;
 
     GameManager gm;
@@ -33,6 +36,7 @@ public class PlayerMovement : MonoBehaviour
 
         GameObject[] playerArray = GameObject.FindGameObjectsWithTag("Player");
         startColor = playerColors[playerArray.Length - 1];
+        transform.position = spawnPositions[playerArray.Length - 1];
         GetComponent<SpriteRenderer>().color = startColor;
         gm.AddP(this.gameObject);
     }
