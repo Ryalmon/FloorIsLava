@@ -6,6 +6,7 @@ public class IsGrounded : MonoBehaviour
 {
 
     public bool grounded = true;
+    public Vector2 last;
 
     private void OnTriggerStay2D(Collider2D collision)
     {
@@ -20,6 +21,7 @@ public class IsGrounded : MonoBehaviour
        if (collision.CompareTag("Ground"))
         {
             grounded = false;
+            last = collision.transform.position;
         }
     }
 }
