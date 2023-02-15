@@ -13,8 +13,9 @@ public class ButtonBehavior : MonoBehaviour
     GameManager gm;
     private void Start()
     {
+        sr = GetComponent<SpriteRenderer>();
         gm = FindObjectOfType<GameManager>();
-        sr.sprite = pressedButton;
+        
         //gm.AddB(this.gameObject);
        
     }
