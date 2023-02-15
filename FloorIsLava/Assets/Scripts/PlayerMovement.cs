@@ -96,11 +96,12 @@ public class PlayerMovement : MonoBehaviour
     IEnumerator Respawn()
     {
         yield return new WaitForSeconds(3);
+        
+        transform.position = spawnPoint;
+        transform.localScale = startScale;
         gr.grounded = true;
         isStunned = false;
         isJumping = false;
-        transform.position = spawnPoint;
-        transform.localScale = startScale;
         cr = null;
     }
 
