@@ -6,10 +6,10 @@ public class ButtonBehavior : MonoBehaviour
 {
     public bool active = false;
     //private GameController gc;
-    private GameController gc;
+    //private GameController gc;
     private SpriteRenderer sr;
-    public Sprite pressedButton;
-    public Sprite unpressed;
+    //public Sprite pressedButton;
+    //public Sprite unpressed;
     Color unPressedColor;
     public Color pressedColor;
     // Start is called before the first frame update
@@ -27,6 +27,7 @@ public class ButtonBehavior : MonoBehaviour
 
 
     void OnTriggerEnter2D(Collider2D collider){
+        Debug.Log("pressed");
         if(collider.CompareTag("Player")){
             if(!active){
                 active = true;
@@ -34,7 +35,7 @@ public class ButtonBehavior : MonoBehaviour
                 sr.color = pressedColor;
                 //sr.sprite = pressedButton;
             }
-            if(active)
+            else if(active)
             {
                 active = false;
                 gm.AddB(this.gameObject);

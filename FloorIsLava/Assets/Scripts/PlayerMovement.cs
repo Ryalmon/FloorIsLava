@@ -122,9 +122,12 @@ public class PlayerMovement : MonoBehaviour
     {
         if(collision.CompareTag("Door"))
         {
-            gm.RemoveP(this.gameObject);
-            GetComponent<SpriteRenderer>().color = new Color(0, 0, 0, 0);
-            isStunned = true;
+            if (collision.GetComponent<DoorBehavior>().open)
+            {
+                gm.RemoveP(this.gameObject);
+                GetComponent<SpriteRenderer>().color = new Color(0, 0, 0, 0);
+                isStunned = true;
+            }
         }
     }
 

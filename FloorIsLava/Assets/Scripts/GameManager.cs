@@ -12,7 +12,8 @@ public class GameManager : MonoBehaviour
 
     private void Awake()
     {
-        buttons = new List<GameObject>(GameObject.FindGameObjectsWithTag("Button"));
+        buttons = new List<GameObject>(GameObject.FindGameObjectsWithTag("Ground"));
+        Debug.Log(buttons.Count);
         players = new List<GameObject>();
     }
     void Start()
@@ -53,6 +54,11 @@ public class GameManager : MonoBehaviour
             if (buttons.Count <= 0)
             {
               door.Open();
+            }
+
+            if (buttons.Count>0)
+            {
+                door.Close();
             }
 
             if (door.open && players.Count <= 0)
