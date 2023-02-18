@@ -73,7 +73,7 @@ public class PlayerMovement : MonoBehaviour
 
     public void Jump(InputAction.CallbackContext context)
     {
-        if (isJumping == false && context.performed)
+        if (isJumping == false && context.performed && gr.grounded)
         {
             isJumping = true;
             StartCoroutine(Jumping());
@@ -103,7 +103,7 @@ public class PlayerMovement : MonoBehaviour
         gr.grounded = true;
         isStunned = false;
         isJumping = false;
-        transform.position = spawnPoint;
+        transform.position = gr.last;
         transform.localScale = startScale;
         cr = null;
     }
