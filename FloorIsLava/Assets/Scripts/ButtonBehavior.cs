@@ -9,14 +9,19 @@ public class ButtonBehavior : MonoBehaviour
     private GameController gc;
     private SpriteRenderer sr;
     public Sprite pressedButton;
+    public Sprite unpressed;
+    Color unPressedColor;
+    public Color pressedColor;
     // Start is called before the first frame update
     GameManager gm;
     private void Start()
     {
         sr = GetComponent<SpriteRenderer>();
         gm = FindObjectOfType<GameManager>();
-        
+        //unpressed = sr.sprite;
+
         //gm.AddB(this.gameObject);
+        unPressedColor = sr.color;
        
     }
 
@@ -26,7 +31,15 @@ public class ButtonBehavior : MonoBehaviour
             if(!active){
                 active = true;
                 gm.RemoveB(this.gameObject);
-                sr.sprite = pressedButton;
+                sr.color = pressedColor;
+                //sr.sprite = pressedButton;
+            }
+            if(active)
+            {
+                active = false;
+                gm.AddB(this.gameObject);
+                sr.color = unPressedColor;
+                //sr.sprite = unpressed;
             }
 
         }
