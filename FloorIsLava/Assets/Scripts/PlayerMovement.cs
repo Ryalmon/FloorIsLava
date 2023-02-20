@@ -13,7 +13,8 @@ public class PlayerMovement : MonoBehaviour
     bool canBump = true;
     IsGrounded gr;
     Color startColor;
-    Color[] playerColors = new Color[] { new Color(51f / 255f, 34f / 255f, 136f / 255f , 1f), 
+    Color[] playerColors = new Color[] {
+        new Color(51f / 255f, 34f / 255f, 136f / 255f , 1f), 
         new Color(17f / 255f, 119f / 255f, 51f / 255f, 1f),
         new Color(170f / 255f, 68f / 255f, 153f / 255f , 1f),
         new Color(136f / 255f, 204f / 255f, 238f / 255f , 1f) };
@@ -116,7 +117,7 @@ public class PlayerMovement : MonoBehaviour
         while(transform.localScale.x >0)
         {
             yield return new WaitForSeconds(0.01f);
-            transform.localScale = transform.localScale - new Vector3(0.01f, 0.01f, 0.01f);
+            transform.localScale = transform.localScale - startScale/100;
         }
         StartCoroutine(Respawn());
     }
