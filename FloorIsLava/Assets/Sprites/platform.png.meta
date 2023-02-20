@@ -1,5 +1,9 @@
 fileFormatVersion: 2
+<<<<<<< Updated upstream
 guid: bd481855d01ce884881286b7d062f3e1
+=======
+guid: 558dffbbfbbfa60429c0bfd928f4905f
+>>>>>>> Stashed changes
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -44,11 +48,19 @@ TextureImporter:
   compressionQuality: 50
   spriteMode: 1
   spriteExtrude: 1
+<<<<<<< Updated upstream
   spriteMeshType: 0
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
   spritePixelsToUnits: 1080
   spriteBorder: {x: 198, y: 526, z: 148, w: 307}
+=======
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+>>>>>>> Stashed changes
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
   alphaIsTransparency: 1
@@ -108,7 +120,11 @@ TextureImporter:
     physicsShape: []
     bones: []
     spriteID: 5e97eb03825dee720800000000000000
+<<<<<<< Updated upstream
     internalID: 1537655665
+=======
+    internalID: 0
+>>>>>>> Stashed changes
     vertices: []
     indices: 
     edges: []
