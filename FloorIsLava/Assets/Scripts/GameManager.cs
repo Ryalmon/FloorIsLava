@@ -10,6 +10,10 @@ public class GameManager : MonoBehaviour
     private DoorBehavior door;
     bool changed = false;
 
+    [SerializeField] CountdownController timer;
+    [SerializeField] int twoStarMark, threeStarMark;
+    public static int numStars;
+
     private void Awake()
     {
         buttons = new List<GameObject>(GameObject.FindGameObjectsWithTag("Ground"));
@@ -75,6 +79,19 @@ public class GameManager : MonoBehaviour
     }
     void WinGame()
     {
+        if (timer.countdownTime >= threeStarMark)
+        {
+            numStars = 3;
+        }
+        else if (timer.countdownTime >= twoStarMark)
+        {
+            numStars = 2;
+        }
+        else
+        {
+            numStars = 1;
+        }
+
         SceneManager.LoadScene("Win Screen");
     }
 }

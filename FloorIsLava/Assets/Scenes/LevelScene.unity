@@ -508,10 +508,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 8537133643591957971, guid: 5100ca0d26bd32d4cbebfca8ec2ebb07, type: 3}
-      propertyPath: countdownTime
-      value: 120
-      objectReference: {fileID: 0}
     - target: {fileID: 8537133643800236394, guid: 5100ca0d26bd32d4cbebfca8ec2ebb07, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5
@@ -2963,6 +2959,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   buttons: []
   players: []
+  timer: {fileID: 683220992}
+  twoStarMark: 40
+  threeStarMark: 80
 --- !u!4 &1477312234
 Transform:
   m_ObjectHideFlags: 0
