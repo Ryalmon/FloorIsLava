@@ -8,11 +8,13 @@ public class PlayerMovement : MonoBehaviour
     Vector3 spawnPoint;
     Vector3 startScale;
     Rigidbody2D rb;
-    [SerializeField] float jumpingDuration, speed, knockbackDuration, knockbackForce;
+    [SerializeField] float jumpingDuration, speed, knockbackDuration, knockbackForce, jumpingSpeed;
     bool isJumping, isStunned;
+    bool canBump = true;
     IsGrounded gr;
     Color startColor;
-    Color[] playerColors = new Color[] { new Color(51f / 255f, 34f / 255f, 136f / 255f , 1f), 
+    Color[] playerColors = new Color[] {
+        new Color(51f / 255f, 34f / 255f, 136f / 255f , 1f), 
         new Color(17f / 255f, 119f / 255f, 51f / 255f, 1f),
         new Color(170f / 255f, 68f / 255f, 153f / 255f , 1f),
         new Color(136f / 255f, 204f / 255f, 238f / 255f , 1f) };
@@ -25,8 +27,12 @@ public class PlayerMovement : MonoBehaviour
 
     Vector2 moveVector;
 
+    Animator an;
+
     void Start()
-    {
+    {   
+        StartCoroutine(BumpingCooldown());
+        an = GetComponent<Animator>();
         gm = FindObjectOfType<GameManager>();
         cr = null;
         spawnPoint = transform.position;
@@ -39,6 +45,8 @@ public class PlayerMovement : MonoBehaviour
         transform.position = spawnPositions[playerArray.Length - 1];
         GetComponent<SpriteRenderer>().color = startColor;
         gm.AddP(this.gameObject);
+
+        
     }
 
 
@@ -58,11 +66,24 @@ public class PlayerMovement : MonoBehaviour
     {
         if(!isStunned && !isJumping)
             rb.velocity = moveVector * speed;
+        else if(!isStunned && isJumping)
+        {
+            rb.AddForce(moveVector * jumpingSpeed);
+        }
     }
 
     public void OnMove(InputAction.CallbackContext context)
     {
         moveVector = context.ReadValue<Vector2>();
+        if (an != null)
+        {
+            an.SetFloat("X", moveVector.normalized.x);
+            an.SetFloat("Y", moveVector.normalized.y);
+            if (moveVector == Vector2.zero)
+                an.SetBool("IsMoving", false);
+            else
+                an.SetBool("IsMoving", true);
+        }
     }
 
     void Fall()
@@ -76,15 +97,19 @@ public class PlayerMovement : MonoBehaviour
         if (isJumping == false && context.performed && gr.grounded)
         {
             isJumping = true;
+            if(an!=null)
+                an.SetBool("Jumping", true);
             StartCoroutine(Jumping());
         }
     }
     IEnumerator Jumping()
     {
-        GetComponent<SpriteRenderer>().color = Color.red;
+        //GetComponent<SpriteRenderer>().color = Color.red;
         yield return new WaitForSeconds(jumpingDuration);
-        GetComponent<SpriteRenderer>().color = startColor;
+        //GetComponent<SpriteRenderer>().color = startColor;
         isJumping = false;
+        if(an!=null)
+            an.SetBool("Jumping", false);
     }
 
     IEnumerator Die()
@@ -92,7 +117,7 @@ public class PlayerMovement : MonoBehaviour
         while(transform.localScale.x >0)
         {
             yield return new WaitForSeconds(0.01f);
-            transform.localScale = transform.localScale - new Vector3(0.01f, 0.01f, 0.01f);
+            transform.localScale = transform.localScale - startScale/100;
         }
         StartCoroutine(Respawn());
     }
@@ -105,12 +130,13 @@ public class PlayerMovement : MonoBehaviour
         isJumping = false;
         transform.position = gr.last;
         transform.localScale = startScale;
+        StartCoroutine(BumpingCooldown());
         cr = null;
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        if (collision.gameObject.CompareTag("Player"))
+        if (collision.gameObject.CompareTag("Player") && canBump)
         {
             isStunned = true;
             rb.velocity = -(collision.transform.position - transform.position).normalized * knockbackForce;
@@ -126,6 +152,11 @@ public class PlayerMovement : MonoBehaviour
             {
                 gm.RemoveP(this.gameObject);
                 GetComponent<SpriteRenderer>().color = new Color(0, 0, 0, 0);
+                BoxCollider2D temp = GetComponent<BoxCollider2D>();
+                if (temp!=null)
+                {
+                    temp.enabled = false;
+                }
                 isStunned = true;
             }
         }
@@ -136,5 +167,12 @@ public class PlayerMovement : MonoBehaviour
         yield return new WaitForSeconds(knockbackDuration);
         rb.velocity = Vector3.zero;
         isStunned = false;
+    }
+
+    IEnumerator BumpingCooldown()
+    {
+        canBump = false;
+        yield return new WaitForSeconds(3f);
+        canBump = true;
     }
 }
