@@ -76,6 +76,10 @@ public class PlayerMovement : MonoBehaviour
         moveVector = context.ReadValue<Vector2>();
         an.SetFloat("X", moveVector.normalized.x);
         an.SetFloat("Y", moveVector.normalized.y);
+        if (moveVector == Vector2.zero)
+            an.SetBool("IsMoving", false);
+        else
+            an.SetBool("IsMoving", true);
     }
 
     void Fall()
