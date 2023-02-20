@@ -74,12 +74,15 @@ public class PlayerMovement : MonoBehaviour
     public void OnMove(InputAction.CallbackContext context)
     {
         moveVector = context.ReadValue<Vector2>();
-        an.SetFloat("X", moveVector.normalized.x);
-        an.SetFloat("Y", moveVector.normalized.y);
-        if (moveVector == Vector2.zero)
-            an.SetBool("IsMoving", false);
-        else
-            an.SetBool("IsMoving", true);
+        if (an != null)
+        {
+            an.SetFloat("X", moveVector.normalized.x);
+            an.SetFloat("Y", moveVector.normalized.y);
+            if (moveVector == Vector2.zero)
+                an.SetBool("IsMoving", false);
+            else
+                an.SetBool("IsMoving", true);
+        }
     }
 
     void Fall()
@@ -93,7 +96,8 @@ public class PlayerMovement : MonoBehaviour
         if (isJumping == false && context.performed && gr.grounded)
         {
             isJumping = true;
-            an.SetBool("Jumping", true);
+            if(an!=null)
+                an.SetBool("Jumping", true);
             StartCoroutine(Jumping());
         }
     }
@@ -103,7 +107,8 @@ public class PlayerMovement : MonoBehaviour
         yield return new WaitForSeconds(jumpingDuration);
         //GetComponent<SpriteRenderer>().color = startColor;
         isJumping = false;
-        an.SetBool("Jumping", false);
+        if(an!=null)
+            an.SetBool("Jumping", false);
     }
 
     IEnumerator Die()
