@@ -181,6 +181,7 @@ MonoBehaviour:
   speed: 6
   knockbackDuration: 0.12
   knockbackForce: 15
+  jumpingSpeed: 10
   spawnPositions:
   - {x: -0.75, y: 0.5, z: 0}
   - {x: 0.75, y: 0.5, z: 0}
