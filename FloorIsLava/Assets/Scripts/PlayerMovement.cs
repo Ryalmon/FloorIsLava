@@ -8,7 +8,7 @@ public class PlayerMovement : MonoBehaviour
     Vector3 spawnPoint;
     Vector3 startScale;
     Rigidbody2D rb;
-    [SerializeField] float jumpingDuration, speed, knockbackDuration, knockbackForce;
+    [SerializeField] float jumpingDuration, speed, knockbackDuration, knockbackForce, jumpingSpeed;
     bool isJumping, isStunned;
     bool canBump = true;
     IsGrounded gr;
@@ -65,6 +65,10 @@ public class PlayerMovement : MonoBehaviour
     {
         if(!isStunned && !isJumping)
             rb.velocity = moveVector * speed;
+        else if(!isStunned && isJumping)
+        {
+            rb.AddForce(moveVector * jumpingSpeed);
+        }
     }
 
     public void OnMove(InputAction.CallbackContext context)
@@ -85,16 +89,17 @@ public class PlayerMovement : MonoBehaviour
         if (isJumping == false && context.performed && gr.grounded)
         {
             isJumping = true;
-            an.SetTrigger("Jumping");
+            an.SetBool("Jumping", true);
             StartCoroutine(Jumping());
         }
     }
     IEnumerator Jumping()
     {
-        GetComponent<SpriteRenderer>().color = Color.red;
+        //GetComponent<SpriteRenderer>().color = Color.red;
         yield return new WaitForSeconds(jumpingDuration);
-        GetComponent<SpriteRenderer>().color = startColor;
+        //GetComponent<SpriteRenderer>().color = startColor;
         isJumping = false;
+        an.SetBool("Jumping", false);
     }
 
     IEnumerator Die()
