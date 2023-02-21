@@ -15,7 +15,7 @@ public class PlayerMovement : MonoBehaviour
     Color startColor;
     //player colors
     Color[] playerColors = new Color[] {
-        new Color(255f / 255f, 255f / 255f, 255 / 255f , 1f), 
+        new Color(255f / 255f, 255f / 255f, 255 / 255f , 1f),
         new Color(135f / 255f, 255f / 255f, 122f / 255f, 1f),
         new Color(255f / 255f, 0f / 255f, 46f / 255f , 1f),
         new Color(136f / 255f, 204f / 255f, 238f / 255f , 1f) };
