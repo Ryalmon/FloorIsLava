@@ -15,9 +15,9 @@ public class PlayerMovement : MonoBehaviour
     Color startColor;
     //player colors
     Color[] playerColors = new Color[] {
-        new Color(51f / 255f, 34f / 255f, 136f / 255f , 1f), 
-        new Color(17f / 255f, 119f / 255f, 51f / 255f, 1f),
-        new Color(170f / 255f, 68f / 255f, 153f / 255f , 1f),
+        new Color(255f / 255f, 255f / 255f, 255 / 255f , 1f), 
+        new Color(135f / 255f, 255f / 255f, 122f / 255f, 1f),
+        new Color(255f / 255f, 0f / 255f, 46f / 255f , 1f),
         new Color(136f / 255f, 204f / 255f, 238f / 255f , 1f) };
     [SerializeField] Vector3[] spawnPositions = new Vector3[] { new Vector3(-0.75f, 0.5f, 0f),
         new Vector3(0.75f, 0.5f, 0f),

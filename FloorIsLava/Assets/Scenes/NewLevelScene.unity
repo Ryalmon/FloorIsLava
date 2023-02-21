@@ -580,6 +580,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: TimerUI
       objectReference: {fileID: 0}
+    - target: {fileID: 8555619721740781865, guid: 5100ca0d26bd32d4cbebfca8ec2ebb07, type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8555619721740781865, guid: 5100ca0d26bd32d4cbebfca8ec2ebb07, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 5100ca0d26bd32d4cbebfca8ec2ebb07, type: 3}
 --- !u!1 &417544142
@@ -2268,7 +2276,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 876724713}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 12.68, y: -9.82, z: 9.850233}
+  m_LocalPosition: {x: 10.96, y: -9.45, z: 9.850233}
   m_LocalScale: {x: 3, y: 3, z: 1.2006}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -2394,7 +2402,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 879271241}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 5.3, y: -10.3, z: 9.850233}
+  m_LocalPosition: {x: 4.33, y: -9.78, z: 9.850233}
   m_LocalScale: {x: 3, y: 2, z: 1.2006}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -3704,7 +3712,7 @@ PrefabInstance:
     - target: {fileID: 5523562369735809192, guid: 038949f8dd5eb37458a82d9e4ab8fe76, type: 3}
       propertyPath: m_Sprite
       value: 
-      objectReference: {fileID: 21300000, guid: a5dac31894597f74095a7490007d9092, type: 3}
+      objectReference: {fileID: 21300000, guid: 1ed738a187c67104ea6adf099edab916, type: 3}
     - target: {fileID: 5523562369735809192, guid: 038949f8dd5eb37458a82d9e4ab8fe76, type: 3}
       propertyPath: m_WasSpriteAssigned
       value: 1
@@ -3713,6 +3721,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: Door
       objectReference: {fileID: 0}
+    - target: {fileID: 5523562369735809205, guid: 038949f8dd5eb37458a82d9e4ab8fe76, type: 3}
+      propertyPath: openDoor
+      value: 
+      objectReference: {fileID: 21300000, guid: a5dac31894597f74095a7490007d9092, type: 3}
+    - target: {fileID: 5523562369735809205, guid: 038949f8dd5eb37458a82d9e4ab8fe76, type: 3}
+      propertyPath: closeDoor
+      value: 
+      objectReference: {fileID: 21300000, guid: 1ed738a187c67104ea6adf099edab916, type: 3}
     - target: {fileID: 5523562369735809207, guid: 038949f8dd5eb37458a82d9e4ab8fe76, type: 3}
       propertyPath: m_RootOrder
       value: 4
