@@ -13,6 +13,7 @@ public class PlayerMovement : MonoBehaviour
     bool canBump = true;
     IsGrounded gr;
     Color startColor;
+    //player colors
     Color[] playerColors = new Color[] {
         new Color(51f / 255f, 34f / 255f, 136f / 255f , 1f), 
         new Color(17f / 255f, 119f / 255f, 51f / 255f, 1f),
